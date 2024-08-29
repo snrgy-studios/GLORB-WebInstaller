@@ -1,7 +1,7 @@
 body {
     font-family: Verdana, Helvetica, sans-serif;
     text-align: center;
-    background-color: #222;
+    background-color: #000;
     margin: 0;
     color: #fff;
 }
@@ -74,17 +74,17 @@ img {
     font-size: 14px;
     font-family: sans-serif;
     color: #ffffff;
-    background: #09f;
+    background: #808080; /* Medium gray for unselected */
     cursor: pointer;
     transition: background 0.1s;
 }
 
 .radio__label:not(:last-of-type) {
-    border-right: 1px solid #006b50;
+    border-right: 1px solid #a0a0a0; /* Light gray border */
 }
 
 .radio__input:checked+.radio__label {
-    background: rgb(0, 95, 158);
+    background: #333; /* Darker gray for selected, matching the install button background */
 }
 
 @keyframes fi {
@@ -115,7 +115,7 @@ ol {
 
 li::marker {
     text-decoration: bold;
-    color: #09f;
+    color: #fff;
 }
 
 li {
@@ -134,6 +134,7 @@ li {
 
 .inst-button {
     padding: 0;
+    background-color: #000;
 }
 
 @media (prefers-color-scheme: dark) {
