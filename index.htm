@@ -28,14 +28,24 @@
 
   <!-- add new builds here -->
   <select id="ver" class="btn" onchange="resetCheckboxes();setManifest();">
-    
+
     <!-- TODO: Add ble options -->
-    <optgroup label="GLORB Beta Release">
-      <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1_SPH/manifest_sph.json"
-        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1_SPH/manifest_sph.json"
+    <optgroup label="GLORB Beta Release (Ledmap 81)">
+      <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1_SPH/manifest_sph_81.json"
+        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1_SPH/manifest_sph_81.json"
         >GLORB.0.1.0-b1 (SPH0645)</option>
-        <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1_GMA/manifest_gma.json"
-        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1_GMA/manifest_gma.json" 
+        <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1_GMA/manifest_gma_81.json"
+        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1_GMA/manifest_gma_81.json" 
+        >GLORB.0.1.0-b1 (T3902)</option>
+    </optgroup>
+
+    <!-- TODO: Add ble options -->
+    <optgroup label="GLORB Beta Release (Ledmap 80)">
+      <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1_SPH/manifest_sph_80.json"
+        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1_SPH/manifest_sph_80.json"
+        >GLORB.0.1.0-b1 (SPH0645)</option>
+        <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1_GMA/manifest_gma_80.json"
+        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1_GMA/manifest_gma_80.json" 
         >GLORB.0.1.0-b1 (T3902)</option>
     </optgroup>
     
