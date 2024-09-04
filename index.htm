@@ -29,10 +29,14 @@
   <!-- add new builds here -->
   <select id="ver" class="btn" onchange="resetCheckboxes();setManifest();">
     
+    <!-- TODO: Add GMA ble option -->
     <optgroup label="GLORB Beta Release">
-      <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1/manifest.json"
-        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1/manifest_ble.json"
-        >GLORB.0.1.0-b1</option>
+      <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1/manifest_sph.json"
+        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1/manifest_ble_sph.json"
+        >GLORB.0.1.0-b1 (SPH0645)</option>
+        <option data-manifest="bin/beta_0_14_3-GLORB_0_1_0-b1/manifest_gma.json"
+        data-ble = "bin/beta_0_14_3-GLORB_0_1_0-b1/manifest_gma.json" 
+        >GLORB.0.1.0-b1 (T3902)</option>
     </optgroup>
     
     <!-- 
