@@ -14,8 +14,11 @@ function setManifest() {
 
     if (manifest) {
         document.getElementById('inst').setAttribute('manifest', manifest);
+        // Display the selected data option for debugging
+        document.getElementById('debug-info').textContent = `Selected option: ${manifestKey}`;
     } else {
         console.error('Manifest not found for the selected combination');
+        document.getElementById('debug-info').textContent = `Error: Manifest not found for ${manifestKey}`;
         // You might want to disable the install button or show an error message here
     }
 }

@@ -9,7 +9,7 @@
 	<title>GLORB Installer</title>
   <script
     type="module"
-    src="installer/install-button.js"
+    src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
   ></script>
 </head>
 <body onload="checkSupported()">
@@ -20,7 +20,7 @@
 <div id="flasher">
 
 <ol>
-  <li>Plug in your GLORB to a USB-C port on your computer.</li>
+  <li>Plug in your GLORB to a USB-C port on your computer. Firmware <span id="verstr">0.14.4</span> will be.</li>
   <li>Choose firmware release. Select version, microphone and ledmap.</li>
   <li id="coms">Hit "Install" and select the correct COM port. <a onclick="showSerialHelp()">No device found?</a></li>
   <li>Wait for installation to finish and connect to your GLORB!</li>
@@ -74,6 +74,8 @@
     </div>
   </div>
   <br><br>
+  <!-- Add this right before the "Install" button -->
+  <div id="debug-info" style="margin: 10px; font-family: monospace;"></div>
   <div class="container inst-button">
     <esp-web-install-button
       id="inst"
