@@ -1,17 +1,27 @@
 function setManifest() {
-    var sel = document.getElementById('ver');
-    var opt = sel.options[sel.selectedIndex];
-    var m = opt.dataset.manifest;
-    var mble = opt.dataset.ble;
+    const ver = document.getElementById('ver');
+    const selectedOption = ver.options[ver.selectedIndex];
+    const isBluetoothVersion = document.getElementById('ble').checked;
+    const isSPHMicrophone = document.getElementById('sph').checked;
+    const isLedmap81 = document.getElementById('ledmap81').checked;
 
-    //handle bluetooth checkbox
-    m = handleCheckbox(m, mble, 'ble');
+    const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-manifest-';
+    const microphoneSuffix = isSPHMicrophone ? 'sph-' : 'gma-';
+    const ledmapSuffix = isLedmap81 ? '81' : '80';
 
-    document.getElementById('inst').setAttribute('manifest', m);
-    document.getElementById('verstr').textContent = opt.text;
+    const manifestKey = versionPrefix + microphoneSuffix + ledmapSuffix;
+    const manifest = selectedOption.getAttribute(manifestKey);
+
+    if (manifest) {
+        document.getElementById('inst').setAttribute('manifest', manifest);
+    } else {
+        console.error('Manifest not found for the selected combination');
+        // You might want to disable the install button or show an error message here
+    }
 }
 
-
+// Call setManifest initially to set the correct manifest
+setManifest();
 
 function handleCheckbox(manifest, checkboxmanifest, primaryCheckbox) {
     //Check if specified manifest is available
@@ -33,8 +43,31 @@ function handleCheckbox(manifest, checkboxmanifest, primaryCheckbox) {
 }
 
 function resetCheckboxes() {
+    // Reset version
+    document.getElementById('normal').checked = true;
     document.getElementById('ble').checked = false;
+
+    // Reset microphone
+    document.getElementById('sph').checked = true;
+    document.getElementById('gma').checked = false;
+
+    // Reset ledmap
+    document.getElementById('ledmap80').checked = true;
+    document.getElementById('ledmap81').checked = false;
+
+    // Enable all options
     document.getElementById('ble').disabled = false;
+    document.getElementById('gma').disabled = false;
+    document.getElementById('ledmap81').disabled = false;
+
+    // Reset labels (in case they were disabled)
+    ['normal', 'ble', 'sph', 'gma', 'ledmap80', 'ledmap81'].forEach(id => {
+        document.querySelector(`label[for="${id}"]`).style.opacity = '1';
+        document.querySelector(`label[for="${id}"]`).style.cursor = 'pointer';
+    });
+
+    // Call setManifest to update the manifest based on the reset options
+    setManifest();
 }
 
 function checkSupported() {

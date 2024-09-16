@@ -20,60 +20,70 @@
 <div id="flasher">
 
 <ol>
-  <li>Plug in your GLORB to a USB-C port on your computer. Firmware <span id="verstr">0.1.0-b1</span> will be installed.</li>
-  <li>Choose Plain or Bluetooth version.</li>
+  <li>Plug in your GLORB to a USB-C port on your computer.</li>
+  <li>Choose firmware release. Select version, microphone and ledmap.</li>
   <li id="coms">Hit "Install" and select the correct COM port. <a onclick="showSerialHelp()">No device found?</a></li>
-  <li>Wait for installation to finish and connect your GLORB!</li>
+  <li>Wait for installation to finish and connect to your GLORB!</li>
 </ol><br><br>
 
   <!-- add new builds here -->
   <select id="ver" class="btn" onchange="resetCheckboxes();setManifest();">
-
-    <optgroup label="GLORB Beta Release (Ledmap 81)">
-      <option data-manifest="bin/GLORB_0_14_SPH/manifest_sph_81.json"
-        data-ble = "bin/GLORB_0_14_SPH/manifest_ble_sph_81.json"
-        >GLORB.0.14.X (SPH0645)</option>
-        <option data-manifest="bin/GLORB_0_14_GMA/manifest_gma_81.json"
-        data-ble = "bin/GLORB_0_14_GMA/manifest_ble_gma_81.json" 
-        >GLORB.0.14.X (T3902)</option>
+    <optgroup label="GLORB Beta Release">
+      <option 
+        data-plain-sph-80="bin/GLORB_0_14_4/manifest_sph_80.json"
+        data-plain-sph-81="bin/GLORB_0_14_4/manifest_sph_81.json"
+        data-plain-gma-80="bin/GLORB_0_14_4/manifest_gma_80.json"
+        data-plain-gma-81="bin/GLORB_0_14_4/manifest_gma_81.json"
+        data-ble-sph-80="bin/GLORB_0_14_4/manifest_ble_sph_80.json"
+        data-ble-sph-81="bin/GLORB_0_14_4/manifest_ble_sph_81.json"
+        data-ble-gma-80="bin/GLORB_0_14_4/manifest_ble_gma_80.json"
+        data-ble-gma-81="bin/GLORB_0_14_4/manifest_ble_gma_81.json"
+      >GLORB.0.14.4</option>
     </optgroup>
-
-    <!-- TODO: Add ble options -->
-    <optgroup label="GLORB Beta Release (Ledmap 80)">
-      <option data-manifest="bin/GLORB_0_14_SPH/manifest_sph_80.json"
-        data-ble = "bin/GLORB_0_14_SPH/manifest_ble_sph_80.json"
-        >GLORB.0.14.X (SPH0645)</option>
-        <option data-manifest="bin/GLORB_0_14_GMA/manifest_gma_80.json"
-        data-ble = "bin/GLORB_0_14_GMA/manifest_ble_gma_80.json" 
-        >GLORB.0.14.X (T3902)</option>
-    </optgroup>
-    
-    <!-- 
-    <optgroup label="WLED Plain Release">
-      <option data-manifest="bin/release_0_14_3/manifest.json"
-        data-ble = "bin/release_0_14_3/manifest_ble.json"
-        >0.14.3</option>
-    </optgroup> 
-    -->
   </select><br>
 
-  <div class="radio" onchange="setManifest()">
-    <input class="radio__input" type="radio" value="normal" name="version" id="normal" checked>
-    <label class="radio__label" for="normal" id="normal_label">Plain</label>
-    <input class="radio__input" type="radio" value="ble" name="version" id="ble">
-    <label class="radio__label" for="ble" id="ble_label">Bluetooth</label>
+  <div class="radio-toolbar-container" onchange="setManifest()">
+    <div class="radio-toolbar-row">
+      <h3>Version</h3>
+      <div class="radio-toolbar">
+        <input type="radio" id="normal" name="version" value="normal" checked>
+        <label for="normal">Plain</label>
+        <input type="radio" id="ble" name="version" value="ble">
+        <label for="ble">Bluetooth</label>
+      </div>
+    </div>
+
+    <div class="radio-toolbar-row">
+      <h3>Microphone</h3>
+      <div class="radio-toolbar">
+        <input type="radio" id="sph" name="microphone" value="sph" checked>
+        <label for="sph">SPH0645</label>
+        <input type="radio" id="gma" name="microphone" value="gma">
+        <label for="gma">T3902</label>
+      </div>
+    </div>
+
+    <div class="radio-toolbar-row">
+      <h3>Ledmap</h3>
+      <div class="radio-toolbar">
+        <input type="radio" id="ledmap80" name="ledmap" value="80" checked>
+        <label for="ledmap80">Ledmap 80</label>
+        <input type="radio" id="ledmap81" name="ledmap" value="81">
+        <label for="ledmap81">Ledmap 81</label>
+      </div>
+    </div>
   </div>
-    <br>
-    <div class="container inst-button">
-      <esp-web-install-button
-        id="inst"
-        manifest=""
-      >
-        <button class="btn" slot="activate">Install</button>
-      </esp-web-install-button><br>
-</div>
-<br></brY><br>Powered by <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a><br>
-<br><a href="https://github.com/Aircoookie/WLED" target="_blank">GitHub</a>&emsp;<a href="https://kno.wled.ge" target="_blank">kno.wled.ge</a>
+  <br><br>
+  <div class="container inst-button">
+    <esp-web-install-button
+      id="inst"
+      manifest=""
+    >
+      <button class="btn" slot="activate">Install</button>
+    </esp-web-install-button><br>
+  </div>
+  <br></brY><br>Powered by <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a><br>
+  <br><a href="https://github.com/Aircoookie/WLED" target="_blank">GitHub</a>&emsp;<a href="https://kno.wled.ge" target="_blank">kno.wled.ge</a>
 
 <script
   type = "text/javascript"
