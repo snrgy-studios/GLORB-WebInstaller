@@ -5,7 +5,7 @@ function setManifest() {
     const isSPHMicrophone = document.getElementById('sph').checked;
     const isLedmap81 = document.getElementById('ledmap81').checked;
 
-    const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-manifest-';
+    const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-plain-';
     const microphoneSuffix = isSPHMicrophone ? 'sph-' : 'gma-';
     const ledmapSuffix = isLedmap81 ? '81' : '80';
 
