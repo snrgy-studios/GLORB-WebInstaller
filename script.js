@@ -25,7 +25,7 @@ function setManifest() {
 function toggleAdditionalOptions() {
     const ver = document.getElementById('ver');
     const selectedVersion = ver.options[ver.selectedIndex].text;
-    const showAdditionalOptions = selectedVersion === 'GLORB.0.14.4-b1';
+    const showAdditionalOptions = selectedVersion === 'GLORB.0.14.4-b2' || selectedVersion === 'GLORB.0.14.4-b1';
 
     document.getElementById('version-options').style.display = showAdditionalOptions ? 'block' : 'none';
     document.getElementById('ledmap-options').style.display = showAdditionalOptions ? 'block' : 'none';
