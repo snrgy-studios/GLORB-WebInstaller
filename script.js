@@ -1,9 +1,12 @@
 function setManifest() {
     const ver = document.getElementById('ver');
     const selectedOption = ver.options[ver.selectedIndex];
-    const isBluetoothVersion = document.getElementById('ble').checked;
+    // const isBluetoothVersion = document.getElementById('ble').checked;
     const isSPHMicrophone = document.getElementById('sph').checked;
-    const isLedmap81 = document.getElementById('ledmap81').checked;
+    // const isLedmap81 = document.getElementById('ledmap81').checked;
+
+    const isBluetoothVersion = true;
+    const isLedmap81 = true;
 
     const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-plain-';
     const microphoneSuffix = isSPHMicrophone ? 'sph-' : 'gma-';
@@ -47,28 +50,34 @@ function handleCheckbox(manifest, checkboxmanifest, primaryCheckbox) {
 }
 
 function resetCheckboxes() {
-    // Reset version
-    document.getElementById('normal').checked = true;
-    document.getElementById('ble').checked = false;
-
     // Reset microphone
     document.getElementById('sph').checked = true;
     document.getElementById('gma').checked = false;
 
-    // Reset ledmap
-    document.getElementById('ledmap80').checked = true;
-    document.getElementById('ledmap81').checked = false;
-
-    // Enable all options
-    document.getElementById('ble').disabled = false;
-    document.getElementById('gma').disabled = false;
-    document.getElementById('ledmap81').disabled = false;
-
     // Reset labels (in case they were disabled)
-    ['normal', 'ble', 'sph', 'gma', 'ledmap80', 'ledmap81'].forEach(id => {
+    ['sph', 'gma'].forEach(id => {
         document.querySelector(`label[for="${id}"]`).style.opacity = '1';
         document.querySelector(`label[for="${id}"]`).style.cursor = 'pointer';
     });
+
+    // // Reset version
+    // document.getElementById('normal').checked = true;
+    // document.getElementById('ble').checked = false;
+
+    // // Reset ledmap
+    // document.getElementById('ledmap80').checked = true;
+    // document.getElementById('ledmap81').checked = false;
+
+    // // Enable all options
+    // document.getElementById('ble').disabled = false;
+    // document.getElementById('gma').disabled = false;
+    // document.getElementById('ledmap81').disabled = false;
+
+    // // Reset labels (in case they were disabled)
+    // ['normal', 'ble', 'sph', 'gma', 'ledmap80', 'ledmap81'].forEach(id => {
+    //     document.querySelector(`label[for="${id}"]`).style.opacity = '1';
+    //     document.querySelector(`label[for="${id}"]`).style.cursor = 'pointer';
+    // });
 
     // Call setManifest to update the manifest based on the reset options
     setManifest();

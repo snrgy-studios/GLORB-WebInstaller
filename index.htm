@@ -21,28 +21,38 @@
 
 <ol>
   <li>Plug in your GLORB to a USB-C port on your computer.</li>
-  <li>Choose firmware release. Select version, microphone and ledmap.</li>
+  <li>Choose the microphone type for your GLORB.</li>
   <li>Hit "Install" and select the correct COM port. <br>(If unsure, plug it in again to see which one appears in the list.)</li>
   <li>Press install and wait for the installation to finish!</li>
 </ol><br><br>
 
   <!-- add new builds here -->
-  <select id="ver" class="btn" onchange="resetCheckboxes();setManifest();">
+  <select id="ver" class="btn" onchange="setManifest();">
     <optgroup label="GLORB Beta Release">
       <option 
-        data-plain-sph-80="bin/GLORB_0_14_4/manifest_sph_80.json"
-        data-plain-sph-81="bin/GLORB_0_14_4/manifest_sph_81.json"
-        data-plain-gma-80="bin/GLORB_0_14_4/manifest_gma_80.json"
-        data-plain-gma-81="bin/GLORB_0_14_4/manifest_gma_81.json"
-        data-ble-sph-80="bin/GLORB_0_14_4/manifest_ble_sph_80.json"
-        data-ble-sph-81="bin/GLORB_0_14_4/manifest_ble_sph_81.json"
-        data-ble-gma-80="bin/GLORB_0_14_4/manifest_ble_gma_80.json"
-        data-ble-gma-81="bin/GLORB_0_14_4/manifest_ble_gma_81.json"
-      >GLORB.0.14.4</option>
+        data-ble-sph-81="bin/GLORB_0_14_4-b2/manifest_ble_sph_81.json"
+        data-ble-gma-81="bin/GLORB_0_14_4-b2/manifest_ble_gma_81.json"
+      >GLORB.0.14.4-b2</option>
+      <option 
+        data-ble-sph-81="bin/GLORB_0_14_4-b1/manifest_ble_sph_81.json"
+        data-ble-gma-81="bin/GLORB_0_14_4-b1/manifest_ble_gma_81.json"
+      >GLORB.0.14.4-b1</option>
     </optgroup>
   </select><br>
 
+  <!--
+  data-ble-sph-81="bin/GLORB_0_14_4-b1/manifest_ble_sph_81.json"
+  data-ble-gma-81="bin/GLORB_0_14_4-b1/manifest_ble_gma_81.json"
+  data-plain-sph-80="bin/GLORB_0_14_4-b1/manifest_sph_80.json"
+  data-plain-sph-81="bin/GLORB_0_14_4-b1/manifest_sph_81.json"
+  data-plain-gma-80="bin/GLORB_0_14_4-b1/manifest_gma_80.json"
+  data-plain-gma-81="bin/GLORB_0_14_4-b1/manifest_gma_81.json"
+  data-ble-sph-80="bin/GLORB_0_14_4-b1/manifest_ble_sph_80.json"
+  data-ble-gma-80="bin/GLORB_0_14_4-b1/manifest_ble_gma_80.json"
+  -->
+
   <div class="radio-toolbar-container" onchange="setManifest()">
+    <!-- 
     <div class="radio-toolbar-row">
       <h3>Version</h3>
       <div class="radio-toolbar">
@@ -52,6 +62,7 @@
         <label for="ble">Bluetooth</label>
       </div>
     </div>
+    -->
 
     <div class="radio-toolbar-row">
       <h3>Microphone</h3>
@@ -63,6 +74,7 @@
       </div>
     </div>
 
+    <!--
     <div class="radio-toolbar-row">
       <h3>Ledmap</h3>
       <div class="radio-toolbar">
@@ -72,6 +84,7 @@
         <label for="ledmap81">Ledmap 81</label>
       </div>
     </div>
+    -->
   </div>
   <br><br>
   <!-- Add this right before the "Install" button -->
