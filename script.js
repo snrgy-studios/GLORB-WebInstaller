@@ -1,12 +1,9 @@
 function setManifest() {
     const ver = document.getElementById('ver');
     const selectedOption = ver.options[ver.selectedIndex];
-    // const isBluetoothVersion = document.getElementById('ble').checked;
+    const isBluetoothVersion = document.getElementById('ble').checked;
     const isSPHMicrophone = document.getElementById('sph').checked;
-    // const isLedmap81 = document.getElementById('ledmap81').checked;
-
-    const isBluetoothVersion = true;
-    const isLedmap81 = true;
+    const isLedmap81 = document.getElementById('ledmap81').checked;
 
     const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-plain-';
     const microphoneSuffix = isSPHMicrophone ? 'sph-' : 'gma-';
@@ -17,78 +14,59 @@ function setManifest() {
 
     if (manifest) {
         document.getElementById('inst').setAttribute('manifest', manifest);
-        // Display the selected data option for debugging, excluding the initial "data-"
         const debugInfo = manifestKey.replace('data-', '');
         document.getElementById('debug-info').textContent = `Selected option: ${debugInfo}`;
     } else {
         console.error('Manifest not found for the selected combination');
         document.getElementById('debug-info').textContent = `Error: Manifest not found for ${manifestKey.replace('data-', '')}`;
-        // You might want to disable the install button or show an error message here
     }
 }
 
-// Call setManifest initially to set the correct manifest
-setManifest();
+function toggleAdditionalOptions() {
+    const ver = document.getElementById('ver');
+    const selectedVersion = ver.options[ver.selectedIndex].text;
+    const showAdditionalOptions = selectedVersion === 'GLORB.0.14.4-b1';
 
-function handleCheckbox(manifest, checkboxmanifest, primaryCheckbox) {
-    //Check if specified manifest is available
+    document.getElementById('version-options').style.display = showAdditionalOptions ? 'block' : 'none';
+    document.getElementById('ledmap-options').style.display = showAdditionalOptions ? 'block' : 'none';
 
-    if (!checkboxmanifest) {
-        document.getElementById(primaryCheckbox).disabled = true;
-        document.getElementById(primaryCheckbox + "_label").classList.remove("radio__label");
-        document.getElementById(primaryCheckbox + "_label").classList.add("disabled__label");
-    } else {
-        document.getElementById(primaryCheckbox + "_label").classList.remove("disabled__label");
-        document.getElementById(primaryCheckbox + "_label").classList.add("radio__label");
+    // Reset to default values when hiding
+    if (!showAdditionalOptions) {
+        document.getElementById('ble').checked = true;
+        document.getElementById('ledmap81').checked = true;
     }
 
-
-    if (checkboxmanifest && document.getElementById(primaryCheckbox).checked) {
-        manifest = checkboxmanifest;
-    }
-    return manifest;
+    setManifest();
 }
 
 function resetCheckboxes() {
-    // Reset microphone
     document.getElementById('sph').checked = true;
     document.getElementById('gma').checked = false;
+    document.getElementById('normal').checked = true;
+    document.getElementById('ble').checked = false;
+    document.getElementById('ledmap80').checked = true;
+    document.getElementById('ledmap81').checked = false;
 
-    // Reset labels (in case they were disabled)
-    ['sph', 'gma'].forEach(id => {
+    ['sph', 'gma', 'normal', 'ble', 'ledmap80', 'ledmap81'].forEach(id => {
         document.querySelector(`label[for="${id}"]`).style.opacity = '1';
         document.querySelector(`label[for="${id}"]`).style.cursor = 'pointer';
     });
 
-    // // Reset version
-    // document.getElementById('normal').checked = true;
-    // document.getElementById('ble').checked = false;
-
-    // // Reset ledmap
-    // document.getElementById('ledmap80').checked = true;
-    // document.getElementById('ledmap81').checked = false;
-
-    // // Enable all options
-    // document.getElementById('ble').disabled = false;
-    // document.getElementById('gma').disabled = false;
-    // document.getElementById('ledmap81').disabled = false;
-
-    // // Reset labels (in case they were disabled)
-    // ['normal', 'ble', 'sph', 'gma', 'ledmap80', 'ledmap81'].forEach(id => {
-    //     document.querySelector(`label[for="${id}"]`).style.opacity = '1';
-    //     document.querySelector(`label[for="${id}"]`).style.cursor = 'pointer';
-    // });
-
-    // Call setManifest to update the manifest based on the reset options
-    setManifest();
+    toggleAdditionalOptions();
 }
 
 function checkSupported() {
     if (document.getElementById('inst').hasAttribute('install-unsupported')) unsupported();
-    else setManifest();
+    else {
+        setManifest();
+        toggleAdditionalOptions();
+    }
 }
 
 function unsupported() {
     document.getElementById('flasher').innerHTML = `Sorry, your browser is not yet supported!<br>
-    Please try on Desktop Chrome or Edge.<br>`
+    Please try on Desktop Chrome or Edge.<br>`;
 }
+
+// Initialize the page
+checkSupported();
