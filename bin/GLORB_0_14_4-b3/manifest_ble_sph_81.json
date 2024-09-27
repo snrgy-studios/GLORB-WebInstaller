@@ -1,6 +1,6 @@
 {
   "name": "GLORB",
-  "version": "0.1.0-b1",
+  "version": "0.14.4-b3",
   "home_assistant_domain": "wled",
   "builds": [
     {
