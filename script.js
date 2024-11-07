@@ -3,11 +3,17 @@ function setManifest() {
     const selectedOption = ver.options[ver.selectedIndex];
     const isBluetoothVersion = document.getElementById('ble').checked;
     const isSPHMicrophone = document.getElementById('sph').checked;
-    const isLedmap81 = document.getElementById('ledmap81').checked;
+    const selectedVersion = ver.options[ver.selectedIndex].text;
+    
+    let ledmapSuffix;
+    if (selectedVersion === 'GLORB.0.14.4-b5' || selectedVersion === 'GLORB.0.14.4-b4') {
+        ledmapSuffix = document.getElementById('ledmap83').checked ? '83' : '81';
+    } else {
+        ledmapSuffix = document.getElementById('ledmap81').checked ? '81' : '80';
+    }
 
     const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-plain-';
     const microphoneSuffix = isSPHMicrophone ? 'sph-' : 'gma-';
-    const ledmapSuffix = isLedmap81 ? '81' : '80';
 
     const manifestKey = versionPrefix + microphoneSuffix + ledmapSuffix;
     const manifest = selectedOption.getAttribute(manifestKey);
@@ -25,34 +31,103 @@ function setManifest() {
 function toggleAdditionalOptions() {
     const ver = document.getElementById('ver');
     const selectedVersion = ver.options[ver.selectedIndex].text;
-    const showAdditionalOptions = selectedVersion === 'GLORB.0.14.4-b2' || selectedVersion === 'GLORB.0.14.4-b1';
+    
+    // Show version options only for b1 and b2
+    const showVersionOptions = selectedVersion === 'GLORB.0.14.4-b2' || selectedVersion === 'GLORB.0.14.4-b1';
+    document.getElementById('version-options').style.display = showVersionOptions ? 'block' : 'none';
+    
+    // Show ledmap options for b1, b2 and b5
+    const showLedmapOptions = showVersionOptions || selectedVersion === 'GLORB.0.14.4-b5' || selectedVersion === 'GLORB.0.14.4-b4' || selectedVersion === 'GLORB.0.14.4-b3';
+    document.getElementById('ledmap-options').style.display = showLedmapOptions ? 'block' : 'none';
 
-    document.getElementById('version-options').style.display = showAdditionalOptions ? 'block' : 'none';
-    document.getElementById('ledmap-options').style.display = showAdditionalOptions ? 'block' : 'none';
+    // Handle ledmap visibility based on version
+    const ledmap80 = document.getElementById('ledmap80');
+    const ledmap81 = document.getElementById('ledmap81');
+    const ledmap83 = document.getElementById('ledmap83');
+    const sphOption = document.getElementById('sph');
+    const gmaOption = document.getElementById('gma');
+
+    if (selectedVersion === 'GLORB.0.14.4-b5') {
+        // For b5, show 81 and 83
+        ledmap80.style.display = 'none';
+        ledmap80.nextElementSibling.style.display = 'none';
+        ledmap81.style.display = 'inline-block';
+        ledmap81.nextElementSibling.style.display = 'inline-block';
+        ledmap83.style.display = 'inline-block';
+        ledmap83.nextElementSibling.style.display = 'inline-block';
+        
+        // Show both mic options
+        sphOption.style.display = 'inline-block';
+        sphOption.nextElementSibling.style.display = 'inline-block';
+        gmaOption.style.display = 'inline-block';
+        gmaOption.nextElementSibling.style.display = 'inline-block';
+        
+        // Set GMA and ledmap83 as defaults for b5
+        gmaOption.checked = true;
+        ledmap83.checked = true;
+    } else if (selectedVersion === 'GLORB.0.14.4-b4') {
+        // For b4, show only 83
+        ledmap80.style.display = 'none';
+        ledmap80.nextElementSibling.style.display = 'none';
+        ledmap81.style.display = 'none';
+        ledmap81.nextElementSibling.style.display = 'none';
+        ledmap83.style.display = 'inline-block';
+        ledmap83.nextElementSibling.style.display = 'inline-block';
+        
+        // Hide SPH option, show only GMA
+        sphOption.style.display = 'none';
+        sphOption.nextElementSibling.style.display = 'none';
+        gmaOption.style.display = 'inline-block';
+        gmaOption.nextElementSibling.style.display = 'inline-block';
+        
+        // Force ledmap83, GMA and BLE for b4
+        gmaOption.checked = true;
+        document.getElementById('ble').checked = true;
+        ledmap83.checked = true;
+    } else if (selectedVersion === 'GLORB.0.14.4-b3') {
+        // For b3, show only 81
+        ledmap80.style.display = 'none';
+        ledmap80.nextElementSibling.style.display = 'none';
+        ledmap81.style.display = 'inline-block';
+        ledmap81.nextElementSibling.style.display = 'inline-block';
+        ledmap83.style.display = 'none';
+        ledmap83.nextElementSibling.style.display = 'none';
+        
+        // Show both mic options
+        sphOption.style.display = 'inline-block';
+        sphOption.nextElementSibling.style.display = 'inline-block';
+        gmaOption.style.display = 'inline-block';
+        gmaOption.nextElementSibling.style.display = 'inline-block';
+        
+        // Force ledmap81 and BLE for b3
+        document.getElementById('ble').checked = true;
+        ledmap81.checked = true;
+    } else {
+        // For other versions, show only 80 and 81
+        ledmap80.style.display = 'inline-block';
+        ledmap80.nextElementSibling.style.display = 'inline-block';
+        ledmap81.style.display = 'inline-block';
+        ledmap81.nextElementSibling.style.display = 'inline-block';
+        ledmap83.style.display = 'none';
+        ledmap83.nextElementSibling.style.display = 'none';
+        
+        // Show both mic options
+        sphOption.style.display = 'inline-block';
+        sphOption.nextElementSibling.style.display = 'inline-block';
+        gmaOption.style.display = 'inline-block';
+        gmaOption.nextElementSibling.style.display = 'inline-block';
+        
+        // Reset to SPH and ledmap80 for other versions
+        sphOption.checked = true;
+        ledmap80.checked = true;
+    }
 
     // Reset to default values when hiding
-    if (!showAdditionalOptions) {
+    if (!showVersionOptions) {
         document.getElementById('ble').checked = true;
-        document.getElementById('ledmap81').checked = true;
     }
 
     setManifest();
-}
-
-function resetCheckboxes() {
-    document.getElementById('sph').checked = true;
-    document.getElementById('gma').checked = false;
-    document.getElementById('normal').checked = true;
-    document.getElementById('ble').checked = false;
-    document.getElementById('ledmap80').checked = true;
-    document.getElementById('ledmap81').checked = false;
-
-    ['sph', 'gma', 'normal', 'ble', 'ledmap80', 'ledmap81'].forEach(id => {
-        document.querySelector(`label[for="${id}"]`).style.opacity = '1';
-        document.querySelector(`label[for="${id}"]`).style.cursor = 'pointer';
-    });
-
-    toggleAdditionalOptions();
 }
 
 function checkSupported() {
