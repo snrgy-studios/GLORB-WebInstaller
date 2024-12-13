@@ -5,17 +5,24 @@ function setManifest() {
     const isSPHMicrophone = document.getElementById('sph').checked;
     const selectedVersion = ver.options[ver.selectedIndex].text;
     
-    let ledmapSuffix;
-    if (selectedVersion === 'GLORB.0.14.4-b5' || selectedVersion === 'GLORB.0.14.4-b4') {
-        ledmapSuffix = document.getElementById('ledmap83').checked ? '83' : '81';
+    let manifestKey;
+    if (selectedVersion === 'WLED.0.15.0') {
+        // WLED only needs microphone selection
+        manifestKey = 'data-' + (isSPHMicrophone ? 'sph' : 'gma');
     } else {
-        ledmapSuffix = document.getElementById('ledmap81').checked ? '81' : '80';
+        // Handle GLORB versions
+        let ledmapSuffix;
+        if (selectedVersion === 'GLORB.0.14.4-b5' || selectedVersion === 'GLORB.0.14.4-b4') {
+            ledmapSuffix = document.getElementById('ledmap83').checked ? '83' : '81';
+        } else {
+            ledmapSuffix = document.getElementById('ledmap81').checked ? '81' : '80';
+        }
+
+        const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-plain-';
+        const microphoneSuffix = isSPHMicrophone ? 'sph-' : 'gma-';
+        manifestKey = versionPrefix + microphoneSuffix + ledmapSuffix;
     }
 
-    const versionPrefix = isBluetoothVersion ? 'data-ble-' : 'data-plain-';
-    const microphoneSuffix = isSPHMicrophone ? 'sph-' : 'gma-';
-
-    const manifestKey = versionPrefix + microphoneSuffix + ledmapSuffix;
     const manifest = selectedOption.getAttribute(manifestKey);
 
     if (manifest) {
@@ -36,8 +43,10 @@ function toggleAdditionalOptions() {
     const showVersionOptions = selectedVersion === 'GLORB.0.14.4-b2' || selectedVersion === 'GLORB.0.14.4-b1';
     document.getElementById('version-options').style.display = showVersionOptions ? 'block' : 'none';
     
-    // Show ledmap options for b1, b2 and b5
-    const showLedmapOptions = showVersionOptions || selectedVersion === 'GLORB.0.14.4-b5' || selectedVersion === 'GLORB.0.14.4-b4' || selectedVersion === 'GLORB.0.14.4-b3';
+    // Show ledmap options for GLORB versions except WLED
+    const showLedmapOptions = selectedVersion !== 'WLED.0.15.0' && 
+        (showVersionOptions || selectedVersion === 'GLORB.0.14.4-b5' || 
+         selectedVersion === 'GLORB.0.14.4-b4' || selectedVersion === 'GLORB.0.14.4-b3');
     document.getElementById('ledmap-options').style.display = showLedmapOptions ? 'block' : 'none';
 
     // Handle ledmap visibility based on version
@@ -47,8 +56,17 @@ function toggleAdditionalOptions() {
     const sphOption = document.getElementById('sph');
     const gmaOption = document.getElementById('gma');
 
-    if (selectedVersion === 'GLORB.0.14.4-b5') {
-        // For b5, show 81 and 83
+    if (selectedVersion === 'WLED.0.15.0') {
+        // For WLED, only show microphone options
+        document.getElementById('ble').checked = true;
+        
+        // Show both mic options
+        sphOption.style.display = 'inline-block';
+        sphOption.nextElementSibling.style.display = 'inline-block';
+        gmaOption.style.display = 'inline-block';
+        gmaOption.nextElementSibling.style.display = 'inline-block';
+    } else if (selectedVersion === 'GLORB.0.14.4-b5') {
+        // Existing b5 logic...
         ledmap80.style.display = 'none';
         ledmap80.nextElementSibling.style.display = 'none';
         ledmap81.style.display = 'inline-block';
@@ -56,13 +74,11 @@ function toggleAdditionalOptions() {
         ledmap83.style.display = 'inline-block';
         ledmap83.nextElementSibling.style.display = 'inline-block';
         
-        // Show both mic options
         sphOption.style.display = 'inline-block';
         sphOption.nextElementSibling.style.display = 'inline-block';
         gmaOption.style.display = 'inline-block';
         gmaOption.nextElementSibling.style.display = 'inline-block';
         
-        // Set GMA and ledmap83 as defaults for b5
         gmaOption.checked = true;
         ledmap83.checked = true;
     } else if (selectedVersion === 'GLORB.0.14.4-b4') {
