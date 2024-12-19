@@ -12,7 +12,8 @@ function setManifest() {
     } else {
         // Handle GLORB versions
         let ledmapSuffix;
-        if (selectedVersion === 'GLORB.0.14.4-b5' || selectedVersion === 'GLORB.0.14.4-b4') {
+        if (selectedVersion === 'GLORB.0.14.4-b6' || selectedVersion === 'GLORB.0.14.4-b5' || 
+            selectedVersion === 'GLORB.0.14.4-b4') {
             ledmapSuffix = document.getElementById('ledmap83').checked ? '83' : '81';
         } else {
             ledmapSuffix = document.getElementById('ledmap81').checked ? '81' : '80';
@@ -45,8 +46,9 @@ function toggleAdditionalOptions() {
     
     // Show ledmap options for GLORB versions except WLED
     const showLedmapOptions = selectedVersion !== 'WLED.0.15.0' && 
-        (showVersionOptions || selectedVersion === 'GLORB.0.14.4-b5' || 
-         selectedVersion === 'GLORB.0.14.4-b4' || selectedVersion === 'GLORB.0.14.4-b3');
+        (showVersionOptions || selectedVersion === 'GLORB.0.14.4-b6' ||
+         selectedVersion === 'GLORB.0.14.4-b5' || selectedVersion === 'GLORB.0.14.4-b4' || 
+         selectedVersion === 'GLORB.0.14.4-b3');
     document.getElementById('ledmap-options').style.display = showLedmapOptions ? 'block' : 'none';
 
     // Handle ledmap visibility based on version
@@ -65,8 +67,8 @@ function toggleAdditionalOptions() {
         sphOption.nextElementSibling.style.display = 'inline-block';
         gmaOption.style.display = 'inline-block';
         gmaOption.nextElementSibling.style.display = 'inline-block';
-    } else if (selectedVersion === 'GLORB.0.14.4-b5') {
-        // Existing b5 logic...
+    } else if (selectedVersion === 'GLORB.0.14.4-b6' || selectedVersion === 'GLORB.0.14.4-b5') {
+        // b5 and b6 share the same logic
         ledmap80.style.display = 'none';
         ledmap80.nextElementSibling.style.display = 'none';
         ledmap81.style.display = 'inline-block';
