@@ -15,19 +15,24 @@
 <body onload="checkSupported()">
 <img alt="" src="banner.png">
 <div class="main">
-<h2>Welcome to the GLORB Web Installer!</h2>
+<h1>Welcome to the GLORB Web Installer!</h1>
 
 <div id="flasher">
 
+<div class="instructions-container">
+<h2>Installation Steps</h2>
 <ol>
   <li>Select firmware version and hardware options (probably defaults)</li>
   <li>Click Install to display the COM port list in a popup</li>
   <li>Connect your GLORB via USB-C and select the port that appears in the list</li>
   <li>Click Install GLORB and wait for the installation to finish</li>
-  <li>(Optional) Enter your WiFi details</li>
-  <li>Power up your GLORB and control it through the app!</li>
-</ol><br><br>
+  <li>Configure your WiFi</li>
+  <li>Press Visit Device or control it through the app!</li>
+</ol>
+</div>
 
+<div class="firmware-container">
+<h2>Firmware</h2>
   <!-- add new builds here -->
   <select id="ver" class="btn" onchange="toggleOptions();">
     <optgroup label="GLORB Releases">
@@ -36,19 +41,19 @@
         data-gma-81="bin/GLORB_0_14_4-1_1/manifest_gma_81.json"
         data-sph-83="bin/GLORB_0_14_4-1_1/manifest_sph_83.json"
         data-gma-83="bin/GLORB_0_14_4-1_1/manifest_gma_83.json"
-      >GLORB_0.14.4-1.1</option>
+      >GLORB 0.14.4-1.1</option>
       <option 
         data-sph-81="bin/GLORB_0_14_4-1_0/manifest_sph_81.json"
         data-gma-81="bin/GLORB_0_14_4-1_0/manifest_gma_81.json"
         data-sph-83="bin/GLORB_0_14_4-1_0/manifest_sph_83.json"
         data-gma-83="bin/GLORB_0_14_4-1_0/manifest_gma_83.json"
-      >GLORB_0.14.4-1.0</option>
+      >GLORB 0.14.4-1.0</option>
     </optgroup>
     <optgroup label="WLED Releases">
       <option 
         data-sph="bin/WLED_0_15_0/manifest_sph.json"
         data-gma="bin/WLED_0_15_0/manifest_gma.json"
-      >WLED_0.15.0</option>
+      >WLED 0.15.0</option>
     </optgroup>
   </select><br>
 
@@ -79,7 +84,7 @@
       id="inst"
       manifest=""
     >
-      <button class="btn" slot="activate">Install</button>
+      <button class="btn" slot="activate">INSTALL</button>
     </esp-web-install-button><br>
   </div>
   <br></brY><br>Powered by <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a><br>

@@ -41,7 +41,6 @@ function checkSupported() {
     if (document.getElementById('inst').hasAttribute('install-unsupported')) {
         unsupported();
     } else {
-        setManifest();
         toggleOptions();
     }
 }
