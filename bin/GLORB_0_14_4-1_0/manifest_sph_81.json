@@ -1,6 +1,6 @@
 {
   "name": "GLORB",
-  "version": "0.14.4-b3",
+  "version": "0.14.4-1.0",
   "home_assistant_domain": "wled",
   "builds": [
     {
@@ -9,7 +9,8 @@
         { "path": "bootloader.bin", "offset": 0 },
         { "path": "partitions.bin", "offset": 32768 },
         { "path": "boot_app0.bin", "offset": 57344 },
-        { "path": "firmware_ble_sph.bin", "offset": 65536 }
+        { "path": "firmware_sph_81.bin", "offset": 65536 },
+        { "path": "littlefs.bin", "offset": 4259840 }
       ]
     }
   ]

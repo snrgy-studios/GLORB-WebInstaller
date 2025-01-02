@@ -20,103 +20,60 @@
 <div id="flasher">
 
 <ol>
-  <li>Select the firmware and any specific options you want to install (probably default).</li>
-  <li>Hit Install. A list with available COM ports will apear.</li>
-  <li>Plug in your GLORB to a USB-C port on your computer. <br>Connect to the port that appears in the list.</li>
-  <li>Press Install GLORB and wait for the installation to finish.</li>
-  <li>Set your WiFi credentials to connect the GLORB to your network.</li>
-  <li>Plug in your GLORB to a dedicated power supply and control it through the app!</li>
+  <li>Select firmware version and hardware options (probably defaults)</li>
+  <li>Click Install to display the COM port list in a popup</li>
+  <li>Connect your GLORB via USB-C and select the port that appears in the list</li>
+  <li>Click Install GLORB and wait for the installation to finish</li>
+  <li>(Optional) Enter your WiFi details</li>
+  <li>Power up your GLORB and control it through the app!</li>
 </ol><br><br>
 
   <!-- add new builds here -->
-  <select id="ver" class="btn" onchange="setManifest(); toggleAdditionalOptions();">
-    <optgroup label="GLORB Beta Release">
+  <select id="ver" class="btn" onchange="toggleOptions();">
+    <optgroup label="GLORB Releases">
       <option 
-      data-ble-sph-81="bin/GLORB_0_14_4-b6/manifest_ble_sph_81.json"
-      data-ble-gma-81="bin/GLORB_0_14_4-b6/manifest_ble_gma_81.json"
-      data-ble-sph-83="bin/GLORB_0_14_4-b6/manifest_ble_sph_83.json"
-      data-ble-gma-83="bin/GLORB_0_14_4-b6/manifest_ble_gma_83.json"
-      >GLORB.0.14.4-b6</option>
+        data-sph-81="bin/GLORB_0_14_4-1_1/manifest_sph_81.json"
+        data-gma-81="bin/GLORB_0_14_4-1_1/manifest_gma_81.json"
+        data-sph-83="bin/GLORB_0_14_4-1_1/manifest_sph_83.json"
+        data-gma-83="bin/GLORB_0_14_4-1_1/manifest_gma_83.json"
+      >GLORB_0.14.4-1.1</option>
       <option 
-        data-ble-sph-81="bin/GLORB_0_14_4-b5/manifest_ble_sph_81.json"
-        data-ble-gma-81="bin/GLORB_0_14_4-b5/manifest_ble_gma_81.json"
-        data-ble-sph-83="bin/GLORB_0_14_4-b5/manifest_ble_sph_83.json"
-        data-ble-gma-83="bin/GLORB_0_14_4-b5/manifest_ble_gma_83.json"
-      >GLORB.0.14.4-b5</option>
-      <option 
-        data-ble-gma-83="bin/GLORB_0_14_4-b4/manifest_ble_gma_83.json"
-      >GLORB.0.14.4-b4</option>
-      <option 
-        data-ble-sph-81="bin/GLORB_0_14_4-b3/manifest_ble_sph_81.json"
-        data-ble-gma-81="bin/GLORB_0_14_4-b3/manifest_ble_gma_81.json"
-      >GLORB.0.14.4-b3</option>
-      <option 
-        data-ble-sph-81="bin/GLORB_0_14_4-b2/manifest_ble_sph_81.json"
-        data-ble-gma-81="bin/GLORB_0_14_4-b2/manifest_ble_gma_81.json"
-        data-plain-sph-80="bin/GLORB_0_14_4-b2/manifest_sph_80.json"
-        data-plain-sph-81="bin/GLORB_0_14_4-b2/manifest_sph_81.json"
-        data-plain-gma-80="bin/GLORB_0_14_4-b2/manifest_gma_80.json"
-        data-plain-gma-81="bin/GLORB_0_14_4-b2/manifest_gma_81.json"
-        data-ble-sph-80="bin/GLORB_0_14_4-b2/manifest_ble_sph_80.json"
-        data-ble-gma-80="bin/GLORB_0_14_4-b2/manifest_ble_gma_80.json"
-      >GLORB.0.14.4-b2</option>
-      <option 
-        data-ble-sph-81="bin/GLORB_0_14_4-b1/manifest_ble_sph_81.json"
-        data-ble-gma-81="bin/GLORB_0_14_4-b1/manifest_ble_gma_81.json"
-        data-plain-sph-80="bin/GLORB_0_14_4-b1/manifest_sph_80.json"
-        data-plain-sph-81="bin/GLORB_0_14_4-b1/manifest_sph_81.json"
-        data-plain-gma-80="bin/GLORB_0_14_4-b1/manifest_gma_80.json"
-        data-plain-gma-81="bin/GLORB_0_14_4-b1/manifest_gma_81.json"
-        data-ble-sph-80="bin/GLORB_0_14_4-b1/manifest_ble_sph_80.json"
-        data-ble-gma-80="bin/GLORB_0_14_4-b1/manifest_ble_gma_80.json"
-      >GLORB.0.14.4-b1</option>
+        data-sph-81="bin/GLORB_0_14_4-1_0/manifest_sph_81.json"
+        data-gma-81="bin/GLORB_0_14_4-1_0/manifest_gma_81.json"
+        data-sph-83="bin/GLORB_0_14_4-1_0/manifest_sph_83.json"
+        data-gma-83="bin/GLORB_0_14_4-1_0/manifest_gma_83.json"
+      >GLORB_0.14.4-1.0</option>
+    </optgroup>
+    <optgroup label="WLED Releases">
       <option 
         data-sph="bin/WLED_0_15_0/manifest_sph.json"
         data-gma="bin/WLED_0_15_0/manifest_gma.json"
-      >WLED.0.15.0</option>
+      >WLED_0.15.0</option>
     </optgroup>
   </select><br>
 
   <div class="radio-toolbar-container" onchange="setManifest()">
-    <div id="version-options" style="display: none;">
-      <div class="radio-toolbar-row">
-        <h3>Version</h3>
-        <div class="radio-toolbar">
-          <input type="radio" id="normal" name="version" value="normal" checked>
-          <label for="normal">Plain</label>
-          <input type="radio" id="ble" name="version" value="ble">
-          <label for="ble">Bluetooth</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="radio-toolbar-row">
+    <div id="microphone-row" class="radio-toolbar-row">
       <h3>Microphone</h3>
       <div class="radio-toolbar">
-        <input type="radio" id="sph" name="microphone" value="sph" checked>
+        <input type="radio" id="sph" name="microphone" value="sph">
         <label for="sph">SPH0645</label>
-        <input type="radio" id="gma" name="microphone" value="gma">
+        <input type="radio" id="gma" name="microphone" value="gma" checked>
         <label for="gma">T3902</label>
       </div>
     </div>
 
-    <div id="ledmap-options" style="display: none;">
-      <div class="radio-toolbar-row">
-        <h3>Ledmap</h3>
-        <div class="radio-toolbar">
-          <input type="radio" id="ledmap80" name="ledmap" value="80" checked>
-          <label for="ledmap80">Ledmap 80</label>
-          <input type="radio" id="ledmap81" name="ledmap" value="81">
-          <label for="ledmap81">Ledmap 81</label>
-          <input type="radio" id="ledmap83" name="ledmap" value="83">
-          <label for="ledmap83">Ledmap 83</label>
-        </div>
+    <div id="ledmap-row" class="radio-toolbar-row">
+      <h3>Ledmap</h3>
+      <div class="radio-toolbar">
+        <input type="radio" id="ledmap81" name="ledmap" value="81">
+        <label for="ledmap81">Ledmap 81</label>
+        <input type="radio" id="ledmap83" name="ledmap" value="83" checked>
+        <label for="ledmap83">Ledmap 83</label>
       </div>
     </div>
   </div>
   <br><br>
-  <!-- Add this right before the "Install" button -->
-  <div id="debug-info" style="margin: 10px; font-family: monospace;"></div>
   <div class="container inst-button">
     <esp-web-install-button
       id="inst"
