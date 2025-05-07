@@ -10,7 +10,7 @@
         { "path": "partitions.bin", "offset": 32768 },
         { "path": "boot_app0.bin", "offset": 57344 },
         { "path": "firmware_gma_83.bin", "offset": 65536 },
-        { "path": "littlefs.bin", "offset": 4259840 }
+        { "path": "littlefs_83.bin", "offset": 4259840 }
       ]
     }
   ]
