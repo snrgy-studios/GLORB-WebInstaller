@@ -22,7 +22,7 @@
 <div class="instructions-container">
 <h2>Installation Steps</h2>
 <ol>
-  <li>Select firmware version and hardware options (probably defaults)</li>
+  <li>Select firmware version (probably default)</li>
   <li>Click Install to display the COM port list in a popup</li>
   <li>Connect your GLORB via USB-C and select the port that appears in the list</li>
   <li>Click Install GLORB and wait for the installation to finish</li>
@@ -34,57 +34,31 @@
 <div class="firmware-container">
 <h2>Firmware</h2>
   <!-- add new builds here -->
-  <select id="ver" class="btn" onchange="toggleOptions();">
-    <optgroup label="GLORB Releases">
+  <select id="ver" class="btn" onchange="setManifest();">
+    <optgroup label="Main Releases">
       <option 
-        data-sph-81="bin/GLORB_0_14_4-1_1/manifest_sph_81.json"
-        data-gma-81="bin/GLORB_0_14_4-1_1/manifest_gma_81.json"
-        data-sph-83="bin/GLORB_0_14_4-1_1/manifest_sph_83.json"
-        data-gma-83="bin/GLORB_0_14_4-1_1/manifest_gma_83.json"
+        data-manifest="bin/GLORB_0_14_4-1_1/manifest_gma_83.json"
       >GLORB 0.14.4-1.1</option>
       <option 
-        data-sph-81="bin/GLORB_0_14_4-1_0/manifest_sph_81.json"
-        data-gma-81="bin/GLORB_0_14_4-1_0/manifest_gma_81.json"
-        data-sph-83="bin/GLORB_0_14_4-1_0/manifest_sph_83.json"
-        data-gma-83="bin/GLORB_0_14_4-1_0/manifest_gma_83.json"
+        data-manifest="bin/GLORB_0_14_4-1_0/manifest_gma_83.json"
       >GLORB 0.14.4-1.0</option>
     </optgroup>
-    <optgroup label="WLED Releases">
+    <optgroup label="Pre-production Releases">
       <option 
-        data-sph="bin/WLED_0_15_0/manifest_sph.json"
-        data-gma="bin/WLED_0_15_0/manifest_gma.json"
-      >WLED 0.15.0</option>
+        data-manifest="bin/GLORB_0_14_4-1_1/manifest_sph_81.json"
+      >GLORB 0.14.4-1.1</option>
+      <option 
+        data-manifest="bin/GLORB_0_14_4-1_0/manifest_sph_81.json"
+      >GLORB 0.14.4-1.0</option>
     </optgroup>
   </select><br>
-
-  <div class="radio-toolbar-container" onchange="setManifest()">
-    <div id="microphone-row" class="radio-toolbar-row">
-      <h3>Microphone</h3>
-      <div class="radio-toolbar">
-        <input type="radio" id="sph" name="microphone" value="sph">
-        <label for="sph">SPH0645</label>
-        <input type="radio" id="gma" name="microphone" value="gma" checked>
-        <label for="gma">T3902</label>
-      </div>
-    </div>
-
-    <div id="ledmap-row" class="radio-toolbar-row">
-      <h3>Ledmap</h3>
-      <div class="radio-toolbar">
-        <input type="radio" id="ledmap81" name="ledmap" value="81">
-        <label for="ledmap81">Ledmap 81</label>
-        <input type="radio" id="ledmap83" name="ledmap" value="83" checked>
-        <label for="ledmap83">Ledmap 83</label>
-      </div>
-    </div>
-  </div>
   <br><br>
   <div class="container inst-button">
     <esp-web-install-button
       id="inst"
       manifest=""
     >
-      <button class="btn" slot="activate">INSTALL</button>
+      <button class="btn" slot="activate">SELECT DEVICE</button>
     </esp-web-install-button><br>
   </div>
   <br></brY><br>Powered by <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a><br>
