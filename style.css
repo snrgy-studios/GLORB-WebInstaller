@@ -115,6 +115,35 @@ h2 {
 }
 
 
+/* Desktop app download section */
+.desktop-app-section {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 24px;
+    background-color: #111;
+    border-radius: 8px;
+}
+
+.desktop-app-section p {
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.download-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    min-width: 200px;
+    padding: 12px 24px;
+}
+
 @media (prefers-color-scheme: dark) {
     ewt-install-dialog {
         --mdc-theme-surface: #333;

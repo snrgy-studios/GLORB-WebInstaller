@@ -1,3 +1,7 @@
 
 .vscode/settings.json
 .DS_Store
+desktop-installer/dist/
+desktop-installer/build/
+desktop-installer/__pycache__/
+desktop-installer/venv/
