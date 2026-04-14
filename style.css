@@ -81,14 +81,14 @@ li::marker {
 }
 
 /* Container styles */
-.container, .instructions-container, .firmware-container {
+.container, .instructions-container, .web-installer-section, .firmware-container {
     max-width: 600px;
     margin: 20px auto;
     border-radius: 8px;
     padding: 24px;
 }
 
-.instructions-container {
+.instructions-container, .web-installer-section {
     background-color: #111;
 }
 
@@ -142,6 +142,16 @@ h2 {
     color: #000;
     min-width: 200px;
     padding: 12px 24px;
+}
+
+.download-btn-disabled {
+    background-color: #444;
+    color: #888;
+    cursor: default;
+}
+
+.download-btn-disabled:hover {
+    background-color: #444;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#222222">
   <link rel="shortcut icon" href="favicon.png"> 
   <link rel="stylesheet" href="style.css">
-	<title>GLORB Web Installer</title>
+	<title>GLORB Installer</title>
   <script
     type="module"
     src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
@@ -15,7 +15,7 @@
 <body onload="checkSupported()">
 <img alt="" src="banner.png">
 <div class="main">
-<h1>Welcome to the GLORB Web Installer!</h1>
+<h1>Welcome to the GLORB Installer!</h1>
 
 <div id="flasher">
 
@@ -31,20 +31,8 @@
 </ol>
 </div>
 
-<div class="desktop-app-section">
-<h2>Desktop Installer</h2>
-<p>If the web installer doesn't work or your GLORB is stuck in a boot loop,<br>
-   use the desktop app instead.</p>
-<div class="download-buttons">
-  <a href="https://github.com/snrgy-studios/GLORB-WebInstaller/releases/latest/download/GLORB-Installer-macOS.dmg"
-     class="btn download-btn">Download for macOS</a>
-  <a href="https://github.com/snrgy-studios/GLORB-WebInstaller/releases/latest/download/GLORB-Installer-Windows.exe"
-     class="btn download-btn">Download for Windows</a>
-</div>
-</div>
-
-<div class="firmware-container">
-<h2>Firmware</h2>
+<div class="web-installer-section">
+<h2>Web Installer</h2>
   <!-- add new builds here -->
   <select id="ver" class="btn" onchange="setManifest();">
     <optgroup label="Main Releases">
@@ -54,21 +42,21 @@
       <option
         data-manifest="bin/GLORB_0_14_4-1_3/manifest_gma_83.json"
       >GLORB 0.14.4-1.3</option>
-      <option 
+      <option
         data-manifest="bin/GLORB_0_14_4-1_2/manifest_gma_83.json"
       >GLORB 0.14.4-1.2</option>
-      <option 
+      <option
         data-manifest="bin/GLORB_0_14_4-1_1/manifest_gma_83.json"
       >GLORB 0.14.4-1.1</option>
-      <option 
+      <option
         data-manifest="bin/GLORB_0_14_4-1_0/manifest_gma_83.json"
       >GLORB 0.14.4-1.0</option>
     </optgroup>
     <optgroup label="Pre-production Units">
-      <option 
+      <option
         data-manifest="bin/GLORB_0_14_4-1_1/manifest_sph_81.json"
       >GLORB 0.14.4-1.1</option>
-      <option 
+      <option
         data-manifest="bin/GLORB_0_14_4-1_0/manifest_sph_81.json"
       >GLORB 0.14.4-1.0</option>
     </optgroup>
@@ -79,13 +67,12 @@
       <option
         data-manifest="bin/GLORB_0_14_4-1_3/manifest_gma_83_debug.json"
       >GLORB 0.14.4-1.3 (Debug)</option>
-      <option 
+      <option
         data-manifest="bin/GLORB_0_14_4-1_2/manifest_gma_83_debug.json"
       >GLORB 0.14.4-1.2 (Debug)</option>
     </optgroup>
-  </select><br>
-  <br><br>
-  <div class="container inst-button">
+  </select>
+  <div class="container inst-button" style="margin-top: 20px;">
     <esp-web-install-button
       id="inst"
       manifest=""
@@ -93,9 +80,21 @@
       <button class="btn" slot="activate">SELECT DEVICE</button>
     </esp-web-install-button><br>
   </div>
-  <br></brY><br>Powered by <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a><br>
-  <!-- <br><a href="https://github.com/Aircoookie/WLED" target="_blank">GitHub</a>&emsp;<a href="https://kno.wled.ge" target="_blank">kno.wled.ge</a> -->
-  <br><br>
+  <br>Powered by <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a>
+</div>
+
+<div class="desktop-app-section">
+<h2>Desktop Installer</h2>
+<p>If the web installer doesn't work or your GLORB is stuck in a boot loop,<br>
+   use the desktop app instead.</p>
+<div class="download-buttons">
+  <a href="https://github.com/snrgy-studios/GLORB-WebInstaller/releases/latest/download/GLORB-Installer-macOS.dmg"
+     class="btn download-btn">Download for macOS</a>
+  <span class="btn download-btn download-btn-disabled">Windows (Coming Soon)</span>
+</div>
+</div>
+
+<br>
 <script
   type = "text/javascript"
   src="script.js"
