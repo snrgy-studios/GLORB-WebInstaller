@@ -5,3 +5,4 @@ desktop-installer/dist/
 desktop-installer/build/
 desktop-installer/__pycache__/
 desktop-installer/venv/
+desktop-installer/*.spec
