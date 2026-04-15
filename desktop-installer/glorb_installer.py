@@ -135,7 +135,7 @@ class FlashWorker(threading.Thread):
             # Step 1: Erase flash
             self.queue.put(("status", "Erasing flash..."))
             self.queue.put(("progress_mode", "indeterminate"))
-            erase_args = base_args + ["erase_flash"]
+            erase_args = base_args + ["erase-flash"]
             self.queue.put(("log", f"Running: esptool {' '.join(erase_args)}"))
             try:
                 esptool.main(erase_args)
@@ -152,9 +152,9 @@ class FlashWorker(threading.Thread):
             self.queue.put(("progress", 0))
 
             write_args = base_args + [
-                "write_flash",
-                "--flash_mode", "dio",
-                "--flash_size", "detect",
+                "write-flash",
+                "--flash-mode", "dio",
+                "--flash-size", "detect",
             ]
             for offset, filepath in parts:
                 write_args.extend([hex(offset), filepath])

@@ -53,6 +53,13 @@ def build():
         if os.path.isfile(icon):
             cmd.extend(["--icon", icon])
 
+    # Bundle esptool's stub flasher JSON files (required by esptool v5+)
+    import esptool
+    esptool_dir = os.path.dirname(esptool.__file__)
+    stub_dir = os.path.join(esptool_dir, "targets", "stub_flasher")
+    if os.path.isdir(stub_dir):
+        cmd.append(f"--add-data={stub_dir}{sep}esptool/targets/stub_flasher")
+
     # Hidden imports that PyInstaller may miss
     cmd.extend([
         "--hidden-import", "esptool",
